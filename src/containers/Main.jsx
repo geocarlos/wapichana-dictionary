@@ -5,7 +5,6 @@ import LetterNav from '../components/LetterNav';
 import Header from '../components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AppContext from '../context/app-context';
-
 import wordList from '../data/entries.json';
 const audioUrl = 'https://firebasestorage.googleapis.com/v0/b/wapichana-dictionary.appspot.com/o/';
 
