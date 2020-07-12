@@ -10,13 +10,18 @@ const Word = () => {
 
 	const keys = Object.keys(wordList);
 
+	if(keys.length === 0) {
+		return null;
+	}
+
 	return (
 		<div style={{ margin: '10%' }}>
 			<h1>{wordList[keys[wordId]].entry}</h1>
+			{(wordList[keys[wordId]].audios || []).length > 0 && (
 			<audio controls>
 				<source src={`${audioUrl + wordList[keys[wordId]].audios[0]}?alt=media`}/>
-			</audio>
-			{wordList[keys[wordId]].definitions.map((d, i)=> (
+			</audio>)}
+			{(wordList[keys[wordId]].definitions || []).map((d, i)=> (
 				<React.Fragment key={d.definition}>
 					<p>{`${i + 1}. ${d.definition}`}</p>
 					{d.examples.map(e => (

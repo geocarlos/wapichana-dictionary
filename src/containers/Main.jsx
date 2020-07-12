@@ -5,11 +5,24 @@ import LetterNav from '../components/LetterNav';
 import Header from '../components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AppContext from '../context/app-context';
-import wordList from '../data/entries.json';
+// import wordList from '../data/entries.json';
+import firebase from '../firebase';
+import { useEffect } from 'react';
 const audioUrl = 'https://firebasestorage.googleapis.com/v0/b/wapichana-dictionary.appspot.com/o/';
+
+const db = firebase.database();
+const dataRef = db.ref();
 
 const Main = () => {
 	const [letter, setLetter] = useState('A');
+	const [wordList, setWordList] = useState({});
+
+	useEffect(() => {
+		dataRef.once('value')
+		.then(snapshot => {
+			setWordList(snapshot.val()['wapichana_portuguese']);
+		})
+	}, [wordList])
 	
 	return (
 		<main>

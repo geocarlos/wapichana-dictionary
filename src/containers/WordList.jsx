@@ -41,9 +41,9 @@ const WordList = ({ letter = 'A'}) => {
 				{Object.keys(wordList).filter(w => wordList[w] !== null).map((d, i) => {
 					const check = (letter.toLowerCase() === d[0].toLowerCase() && isNotNh(d)) || letter.toLowerCase() === d.substring(0, 2).toLowerCase();
 					return check && wordList[d] && <li className="word-card" key={d + i}>
-							<Link to={`/${i}/${d}`}>{d}</Link> - {wordList[d].definitions.map(d => d.definition).join('; ')}
+							<Link to={`/${i}/${d}`}>{d}</Link> - {(wordList[d].definitions || []).map(d => d.definition).join('; ')}
 							<div>
-								{wordList[d].audios.length > 0 && <span onClick={() => {
+								{wordList[d].audios && wordList[d].audios.length > 0 && <span onClick={() => {
 									audio && audio.src.includes(wordList[d].audios[0]) ? stop() : play(`${audioUrl + wordList[d].audios[0]}?alt=media`);
 									}}>
 									<PlayStop isPlaying={audio && audio.src.includes(wordList[d].audios[0])} />
