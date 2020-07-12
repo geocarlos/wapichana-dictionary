@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.jpg';
+import appContext from '../context/app-context';
+import { useContext } from 'react';
 
 const Header = () => (
 	<header>

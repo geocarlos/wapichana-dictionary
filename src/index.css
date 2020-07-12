@@ -69,20 +69,17 @@ main {
 
 
 .search {
-
 	width: auto;
-
 	height: 100px;
-
 	padding-top: 20px;
-
 	padding-left: 159px;
-
 	background: dimgrey;
-
 }
 
-
+.search button {
+	float: right;
+	margin-right: 1rem;
+}
 
 .alfabeto {
 

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AppContext from '../context/app-context';
 import firebase from '../firebase';
 import { useEffect } from 'react';
+import EntryEditor from '../components/EntryEditor';
 const audioUrl = 'https://firebasestorage.googleapis.com/v0/b/wapichana-dictionary.appspot.com/o/';
 
 const db = firebase.firestore();
@@ -14,6 +15,7 @@ const db = firebase.firestore();
 const Main = () => {
 	const [letter, setLetter] = useState('NH');
 	const [wordList, setWordList] = useState({});
+	const [isFormOpen, setFormOpen] = useState(false);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -45,7 +47,7 @@ const Main = () => {
 			<Header />
 			<AppContext.Provider value={{ wordList, audioUrl, db }}>
 				<Router>
-					<LetterNav setLetter={setLetter} />
+					<LetterNav setLetter={setLetter}  setFormOpen={setFormOpen}/>
 					<Switch>
 						<Route exact path="/">
 							<WordList letter={letter} />
@@ -56,6 +58,7 @@ const Main = () => {
 					</Switch>
 				</Router>
 			</AppContext.Provider>
+			{isFormOpen && <EntryEditor setFormOpen={setFormOpen} />}
 		</main>
 	)
 }

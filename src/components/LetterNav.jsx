@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LetterNav = ({ setLetter }) => {
+const LetterNav = ({ setLetter, setFormOpen }) => {
 	const letters = ['A', 'B', 'D', 'G', 'I', 'K', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'W', 'X', 'Y', 'Z', 'NH', 'CH'];
 	return (
 		<>
@@ -16,6 +16,7 @@ const LetterNav = ({ setLetter }) => {
 					<li key={letter} onClick={() => setLetter(letter)}><Link to='/'>{letter}</Link></li>
 				))}
 			</ul>
+			<button onClick={() => setFormOpen(true)}>Adicionar Palavra</button>
 		</section>
 		</>
 	);
