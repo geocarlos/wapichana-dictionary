@@ -38,14 +38,14 @@ const WordList = ({ letter = 'A'}) => {
 		<section className="wapi">
 			<h2 id={letter}>{letter}</h2>
 			<ul>
-				{Object.keys(wordList[letter]).filter(w => wordList[w] !== null).map((d, i) => {
-					return wordList[letter][d] && <li className="word-card" key={d + i}>
-							<Link to={`/${i}/${d}`}>{d}</Link> - {(wordList[letter][d].definitions || []).map(d => d.definition).join('; ')}
+				{wordList[letter].filter(w => wordList[w] !== null).map((entry, i) => {
+					return entry && <li className="word-card" key={entry.entry + i}>
+							<Link to={`/${entry.entry}`}>{entry.entry}</Link> - {(entry.definitions || []).map(d => d.definition).join('; ')}
 							<div>
-								{wordList[letter][d].audios && wordList[letter][d].audios.length > 0 && <span onClick={() => {
-									audio && audio.src.includes(wordList[letter][d].audios[0]) ? stop() : play(`${audioUrl + wordList[letter][d].audios[0]}?alt=media`);
+								{entry.audios && entry.audios.length > 0 && <span onClick={() => {
+									audio && audio.src.includes(entry.audios[0]) ? stop() : play(`${audioUrl + entry.audios[0]}?alt=media`);
 									}}>
-									<PlayStop isPlaying={audio && audio.src.includes(wordList[letter][d].audios[0])} />
+									<PlayStop isPlaying={audio && audio.src.includes(entry.audios[0])} />
 								</span>}
 							</div>
 						</li>
