@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBNuUvSv1RE0YwGsrjuRJEihq2GObs3vic",
+	apiKey: "AIzaSyBtb2RNJO6IJ5kUgh5xrQ1SgJO1RzIU9E4",
 	authDomain: "wapichana-dictionary.firebaseapp.com",
 	databaseURL: "https://wapichana-dictionary.firebaseio.com",
 	projectId: "wapichana-dictionary",

@@ -202,3 +202,7 @@ footer {
 	border-radius: .3rem;
 	box-shadow: 1px 1px 3px #DDD;
 }
+
+.edit-link {
+	float: right;
+}
