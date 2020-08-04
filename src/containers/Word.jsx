@@ -90,9 +90,9 @@ const Word = () => {
 				{isLoggedIn && <button onClick={() => history.push(`/entry-editor/${entryKey}`)}>Editar</button>}
 			</div>
 			<div className="display-images">
-				{(word.images || []).map(img => (
-					<div className="image-item">
-						<img src="" alt=""/>
+				{(word.images || []).map((img, i) => (
+					<div key={img + i} className="image-item">
+						<img src={`${audioUrl + img}?alt=media`} alt={img} />
 					</div>
 				))}
 			</div>

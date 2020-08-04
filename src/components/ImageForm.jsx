@@ -5,36 +5,36 @@ import appContext from '../context/app-context';
 import { getLetter } from '../functions/functions';
 
 
-const AudioForm = ({ setFormsOpen, entry, gramm, audios, images}) => {
+const ImageForm = ({ setFormsOpen, entry, gramm, audios, images}) => {
 	const [state, setState] = useState({
-		audio: []
+		image: []
 	});
 
-	console.log(audios)
+	console.log(images)
 
 	const { db, storage } = useContext(appContext);
 
 	const handleClose = () => {
-		setFormsOpen(previous => ({...previous, audio: false}));
+		setFormsOpen(previous => ({...previous, image: false}));
 	}
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (state.audio.length !== 0) {
+		if (state.image.length !== 0) {
 			console.log(event.target.file.files);
-			const audioFile = event.target.file.files[0];
-			const audioRef = storage.ref(audioFile.name);
-			const upload = audioRef.put(audioFile);
+			const imageFile = event.target.file.files[0];
+			const imageRef = storage.ref(imageFile.name);
+			const upload = imageRef.put(imageFile);
 			upload.on('state_changed', snapshot => {
 				if (snapshot.bytesTransferred >= snapshot.totalBytes) {
 					db.collection(getLetter(entry)).doc(entry).set({
 						entry,
 						gramm,
-						images,
-						audios: [...audios, audioFile.name]
+						images: [...images, imageFile.name],
+						audios
 					}).then(result => {
 						console.log(result);
-						handleClose(false)
+						handleClose(false);
 						window.localStorage.removeItem('@wordlist');
 						window.location.reload();
 					})
@@ -55,8 +55,8 @@ const AudioForm = ({ setFormsOpen, entry, gramm, audios, images}) => {
 		<div onClick={handleClick} className="entry-div">
 			<form className="entry-form" onSubmit={handleSubmit}>
 				<div className="field">
-				<label htmlFor="audio">Áudio para {entry}</label>
-					<input name="file" value={state.audio} onChange={e => setState({ audio: e.target.value })} type="file" />
+				<label htmlFor="audio">Imagem para {entry}</label>
+					<input name="file" value={state.image} onChange={e => setState({ image: e.target.value })} type="file" />
 				</div>
 				<button type="submit">Upload</button>
 				<button type="reset" onClick={handleClose}>Cancelar</button>
@@ -65,4 +65,4 @@ const AudioForm = ({ setFormsOpen, entry, gramm, audios, images}) => {
 	);
 }
 
-export default AudioForm;
+export default ImageForm;

@@ -14,8 +14,7 @@ const audioUrl = 'https://firebasestorage.googleapis.com/v0/b/wapichana-dictiona
 
 const db = firebase.firestore();
 const storage = firebase.storage();
-const _list = JSON.parse(window.localStorage.getItem('@wordlist') || {});
-console.log(_list)
+const _list = JSON.parse(window.localStorage.getItem('@wordlist') || '{}');
 
 const Main = () => {
 	const [letter, setLetter] = useState('A');

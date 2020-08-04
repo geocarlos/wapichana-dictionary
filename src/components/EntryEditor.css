@@ -48,3 +48,13 @@
 	background-color: lightgrey;
 	margin: .1rem 0;
 }
+
+.image-item {
+	display: flex;
+	align-items: flex-end;
+	padding: .5rem;
+}
+
+img {
+	width: 250px;
+}

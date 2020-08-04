@@ -206,3 +206,8 @@ footer {
 .edit-link {
 	float: right;
 }
+
+.word-container {
+	display: grid;
+	grid-template-columns: auto auto;
+}
